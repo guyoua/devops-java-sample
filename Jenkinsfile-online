@@ -48,21 +48,6 @@
                 }
             }
         }
-        
-        stage('sonarqube analysis') {
-            steps {
-                container ('maven') {
-                    withCredentials([string(credentialsId : "$SONAR_CREDENTIAL_ID" , variable: 'SONAR_TOKEN')]) {
-                        withSonarQubeEnv('sonar') {
-                          sh "mvn sonar:sonar -gs `pwd`/configuration/settings.xml -Dsonar.branch=$BRANCH_NAME -Dsonar.projectKey={项目key} -Dsonar.projectName={项目名称} -Dsonar.projectVersion={项目版本} -Dsonar.sourceEncoding=UTF-8 -Dsonar.exclusions=src/test/** -Dsonar.sources=src/ -Dsonar.java.binaries=target/classes -Dsonar.host.url={SonarQube地址} -Dsonar.login={SonarQube的token}"
-                        }
-                    }
-                }
-                timeout(time:1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
 
         stage ('build & push') {
             steps {
