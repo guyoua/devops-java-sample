@@ -16,7 +16,7 @@
         DOCKERHUB_NAMESPACE = 'wanzenghui'
         GITHUB_ACCOUNT = 'wanzenghui'
         APP_NAME = 'devops-java-sample'
-        SONAR_CREDENTIAL_ID = 'sonar-qube'
+        SONAR_CREDENTIAL_ID = 'sonar-token'
     }
 
     stages {
